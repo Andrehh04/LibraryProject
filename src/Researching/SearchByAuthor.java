@@ -6,9 +6,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class SearchByAuthor implements ResearchStrategy{
-    LinkedList<Book> books = new LinkedList<>();
+
     @Override
     public List<Book> SearchBy(List<Book> list, String s) {
+        LinkedList<Book> books = new LinkedList<>();
         for(Book book: list)
             if(book.getAuthor().equalsIgnoreCase(s))
                 books.add(book);

@@ -1,3 +1,4 @@
+import Filtering.*;
 import Model.Book;
 import Model.Rating;
 import Model.ReadingStatus;
@@ -14,7 +15,7 @@ public class Main {
         Book.Builder b2 = new Book.Builder("Libro2","Autore2","456");
         b2.setGenre("Genre1").setRating(Rating.CINQUE).setReadingStatus(ReadingStatus.READ);
         Book.Builder b3 = new Book.Builder("Libro3","Autore2","789");
-        b3.setGenre("Genre3").setRating(Rating.CINQUE).setReadingStatus(ReadingStatus.READ);
+        b3.setGenre("Genre3").setRating(Rating.CINQUE).setReadingStatus(ReadingStatus.READING);
         Book.Builder b4 = new Book.Builder("Libro4","Autore4","987");
         b4.setGenre("Genre4").setRating(Rating.CINQUE).setReadingStatus(ReadingStatus.READ);
         Book.Builder b5 = new Book.Builder("Libro5","Autore4","654");
@@ -37,13 +38,13 @@ public class Main {
         books.add(book5);
         books.add(book6);
 
-        ResearchStrategy strategy1 = new SearchByAuthor();
-        ResearchStrategy strategy2 = new SearchByTitle();
-        ResearchStrategy strategy3 = new SearchByISBN();
-        ResearchStrategy strategy4 = new SearchByGenre();
 
-        BookResearchImpl research = new BookResearchImpl(strategy2);
-        System.out.println(research.searchBook(books, "LiBrO2"));
+        FilterStrategy strategy2 = new FilterByGenre();
+        FilterStrategy strategy3 = new FilterByStatus();
+
+
+        BookFilterImpl filter = new BookFilterImpl(strategy3);
+        System.out.println(filter.filter(books, "in le tt ura"));
 
     }
 }
