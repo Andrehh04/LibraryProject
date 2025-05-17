@@ -77,6 +77,9 @@ public class Book {
     public ReadingStatus getReadingStatus() {
         return readingStatus;
     }
+    public String getGenre(){
+        return genre;
+    }
 
     public String toString(){
         return "Titolo: "+title+"\nAutore: "+author+"\nISBN: "+isbn+"\nGenere: "+genre+"\nStato: "+readingStatus.toString()+"\nValutazione: "+rating.toString();

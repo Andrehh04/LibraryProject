@@ -1,4 +1,18 @@
 package Researching;
 
-public class SearchByISBN {
+import Model.Book;
+
+import java.util.LinkedList;
+import java.util.List;
+
+public class SearchByISBN implements ResearchStrategy{
+    LinkedList<Book> books = new LinkedList<>();
+    @Override
+    public List<Book> SearchBy(List<Book> list, String s) {
+        for (Book book : list)
+            if(book.getIsbn().equalsIgnoreCase(s))
+                books.add(book);
+
+        return books;
+    }
 }
