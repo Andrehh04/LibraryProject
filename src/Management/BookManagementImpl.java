@@ -29,12 +29,12 @@ public class BookManagementImpl implements BookManagement {
     }
 
     @Override
-    public void ModifyRating(Book book, Rating rating) {
+    public void modifyRating(Book book, Rating rating) {
         book.setRating(rating);
     }
 
     @Override
-    public void ModifyStatus(Book book, ReadingStatus status) {
+    public void modifyStatus(Book book, ReadingStatus status) {
         book.setreadingStatus(status);
     }
 }
