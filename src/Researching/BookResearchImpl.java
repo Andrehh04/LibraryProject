@@ -7,15 +7,13 @@ import java.util.List;
 
 public class BookResearchImpl implements BookResearch {
     ResearchStrategy strategy;
-    List<Book> books = new LinkedList<>();
 
-    public BookResearchImpl(ResearchStrategy strategy) {
+    public void setStrategy(ResearchStrategy strategy) {
         this.strategy=strategy;
     }
 
     @Override
     public List<Book> searchBook(List<Book> list, String s) {
-        books.addAll(strategy.SearchBy(list, s));
-        return books;
+        return strategy.SearchBy(list, s);
     }
 }

@@ -9,9 +9,8 @@ import java.util.List;
 public class BookManagementImpl implements BookManagement {
 
     @Override
-    public boolean addBook(List<Book> list, Book book) {
+    public void addBook(List<Book> list, Book book) {
         list.add(book);
-        return true;
     }
 
     @Override

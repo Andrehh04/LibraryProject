@@ -7,21 +7,22 @@ public class CommandHandler {
     LinkedList<CommandIF> redoList = new LinkedList<>();
     int maxLenght=10;
     public void handle(CommandIF command){
-        if(command.doIt()){
+        if(command.doIt()){     //se riusciamo ad eseguire il comando lo aggiungiamo alla storia
             history.add(command);
-            if(history.size() > maxLenght)
+            if(history.size() > maxLenght)  //se la storia ha più elementi di maxLenght rimuoviamo il primo comando
                 history.removeFirst();
         }else {
             history.clear();
         }
 
-        if(redoList.size() > maxLenght){
+        //dopo che eseguiamo un comando bisogna svuotare la redolist perchè il "futuro" non ha più senso
+        if(!redoList.isEmpty()){
             redoList.removeFirst();
         }
     }
 
     public void undo(){
-        if(history.size() > 0){
+        if(!history.isEmpty()){
             CommandIF cmd = history.removeLast();
             cmd.undoIt();
             redoList.addLast(cmd);
@@ -29,7 +30,7 @@ public class CommandHandler {
     }
 
     public void redo(){
-        if(redoList.size() > 0){
+        if(!redoList.isEmpty()){
             CommandIF cmd = redoList.removeLast();
             cmd.doIt();
             history.addLast(cmd);

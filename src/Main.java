@@ -47,7 +47,7 @@ public class Main {
             System.out.println(b+"\n");
         }
         System.out.println("\nLista ordinata:\n");
-        BookOrderImpl order = new BookOrderImpl(strategy4);
+        BookOrderImpl order = new BookOrderImpl();
         for(Book b: order.Order(books)){
             System.out.println(b+"\n");
         }
