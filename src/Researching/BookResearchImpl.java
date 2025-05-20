@@ -8,6 +8,7 @@ import java.util.List;
 public class BookResearchImpl implements BookResearch {
     ResearchStrategy strategy;
 
+    @Override
     public void setStrategy(ResearchStrategy strategy) {
         this.strategy=strategy;
     }

@@ -7,6 +7,7 @@ import java.util.List;
 public class BookFilterImpl implements BookFilter {
     FilterStrategy strategy;
 
+    @Override
     public void setStrategy(FilterStrategy strategy) {
         this.strategy = strategy;
     }

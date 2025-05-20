@@ -7,6 +7,7 @@ import java.util.List;
 public class BookOrderImpl implements BookOrder {
     OrderStrategy strategy;
 
+    @Override
     public void setStrategy(OrderStrategy strategy) {
         this.strategy = strategy;
     }

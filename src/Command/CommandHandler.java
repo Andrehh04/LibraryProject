@@ -6,8 +6,9 @@ public class CommandHandler {
     LinkedList<CommandIF> history = new LinkedList<>();
     LinkedList<CommandIF> redoList = new LinkedList<>();
     int maxLenght=10;
+
     public void handle(CommandIF command){
-        if(command.doIt()){     //se riusciamo ad eseguire il comando lo aggiungiamo alla storia
+        if(command.doIt()){     //se riusciamo a eseguire il comando lo aggiungiamo alla storia
             history.add(command);
             if(history.size() > maxLenght)  //se la storia ha più elementi di maxLenght rimuoviamo il primo comando
                 history.removeFirst();
