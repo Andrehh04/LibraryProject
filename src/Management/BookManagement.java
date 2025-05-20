@@ -7,5 +7,6 @@ public interface BookManagement {
     void modifyGenre(Book book, String genre);
     void modifyRating(Book book, Rating rating);
     void modifyStatus(Book book, ReadingStatus status);
+    List<Book> getBooks();
 
 }

@@ -39,7 +39,7 @@ public class BookManagementImpl implements BookManagement {
         book.setreadingStatus(status);
     }
 
-    public LinkedList<Book> getBooks() {
+    public List<Book> getBooks() {
         return books;
     }
 }

@@ -10,9 +10,13 @@ import Model.Rating;
 import Model.ReadingStatus;
 import Ordering.BookOrder;
 import Ordering.BookOrderImpl;
+import Persistence.BookSave;
+import Persistence.BookSaveJSON;
 import Researching.BookResearch;
 import Researching.BookResearchImpl;
 
+import java.io.IOException;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,7 +26,7 @@ public enum LibraryImpl implements Library {
     final BookOrder bookOrder;
     final BookResearch bookResearch;
     final BookFilter bookFilter;
-    //BookSave bookSave;
+    BookSave bookSave;
     final CommandHandler commandHandler;
 
     LibraryImpl(){
@@ -31,10 +35,16 @@ public enum LibraryImpl implements Library {
         bookResearch = new BookResearchImpl();
         bookFilter = new BookFilterImpl();
         commandHandler = new CommandHandler();
+        bookSave = new BookSaveJSON();
     }
     @Override
     public List<Book> filter(List<Book> list, String parameter) {
         return bookFilter.filter(list, parameter);
+    }
+
+    @Override
+    public List<Book> getBooks(){
+        return bookManagement.getBooks();
     }
 
     @Override
@@ -76,5 +86,32 @@ public enum LibraryImpl implements Library {
     @Override
     public List<Book> searchBook(List<Book> list, String s) {
         return bookResearch.searchBook(list, s);
+    }
+
+    public void undo(){
+        commandHandler.undo();
+    }
+
+    public void redo(){
+        commandHandler.redo();
+    }
+
+    @Override
+    public void save(List<Book> list, String path) throws IOException {
+        try{
+            bookSave.save(list,path);
+        }catch (IOException e){
+            System.out.println("Errore durante il salvataggio: "+e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Book> load(String path) throws IOException {
+        try{
+            return bookSave.load(path);
+        }catch (IOException e){
+            System.out.println("Errore durante il caricamento del file: "+e.getMessage());
+            return Collections.emptyList();
+        }
     }
 }

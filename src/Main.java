@@ -1,3 +1,5 @@
+import Facade.Library;
+import Facade.LibraryImpl;
 import Model.Book;
 import Model.Rating;
 import Model.ReadingStatus;
@@ -29,29 +31,14 @@ public class Main {
         Book book5 = b5.build();
         Book book6 = b6.build();
 
-        LinkedList<Book> books = new LinkedList<>();
-        books.add(book3);
-        books.add(book5);
-        books.add(book1);
-        books.add(book6);
-        books.add(book2);
-        books.add(book4);
+        LibraryImpl.INSTANCE.addBook(book1);
+        LibraryImpl.INSTANCE.addBook(book2);
+        LibraryImpl.INSTANCE.addBook(book3);
+        LibraryImpl.INSTANCE.addBook(book4);
+        LibraryImpl.INSTANCE.addBook(book5);
+        LibraryImpl.INSTANCE.addBook(book6);
 
-        OrderStrategy strategy1 = new OrderByStatus();
-        OrderStrategy strategy2 = new OrderByAuthor();
-        OrderStrategy strategy3 = new OrderByGenre();
-        OrderStrategy strategy4 = new OrderByTitle();
-
-        System.out.println("Lista non ordinata:\n");
-        for(Book b: books){
-            System.out.println(b+"\n");
-        }
-        System.out.println("\nLista ordinata:\n");
-        BookOrderImpl order = new BookOrderImpl();
-        for(Book b: order.Order(books)){
-            System.out.println(b+"\n");
-        }
-
+        System.out.println(LibraryImpl.INSTANCE.getBooks());
 
     }
 }
