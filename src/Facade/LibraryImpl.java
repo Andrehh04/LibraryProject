@@ -38,14 +38,14 @@ public enum LibraryImpl implements Library {
     }
 
     @Override
-    public void addBook(List<Book> list, Book book) {
-        CommandIF command = new AddCommand(list,book,bookManagement);
+    public void addBook(Book book) {
+        CommandIF command = new AddCommand(book,bookManagement);
         commandHandler.handle(command);
     }
 
     @Override
-    public Book remove(List<Book> list, Book book) {
-        CommandIF command = new RemoveCommand(list,book,bookManagement);
+    public Book remove(Book book) {
+        CommandIF command = new RemoveCommand(book,bookManagement);
         commandHandler.handle(command);
         return book;
     }
