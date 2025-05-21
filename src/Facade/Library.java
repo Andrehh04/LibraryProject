@@ -6,6 +6,6 @@ import Ordering.BookOrder;
 import Persistence.BookSave;
 import Researching.BookResearch;
 
-public interface Library extends BookOrder,BookResearch,BookFilter, BookSave {
+public interface Library extends BookOrder,BookResearch,BookFilter {
 
 }

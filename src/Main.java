@@ -13,6 +13,7 @@ import java.util.LinkedList;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
+       /*
         Book.Builder b1 = new Book.Builder("Libro1","Autore1","123");
         b1.setGenre("Genre1").setRating(Rating.CINQUE).setReadingStatus(ReadingStatus.TOREAD);
         Book book1=b1.build();
@@ -62,5 +63,22 @@ public class Main {
         LibraryImpl.INSTANCE.undo();
         System.out.println("\nDopo l'undo del remove\n");
         System.out.println(LibraryImpl.INSTANCE.getBooks());
+
+        try{
+            LibraryImpl.INSTANCE.save(LibraryImpl.INSTANCE.getBooks(), "libreriafile.json");
+        }catch (Exception e){
+            System.out.println("Errore durante il salvataggio: "+e.getMessage());
+        }*/
+        System.out.println("Prima del caricamento:\n ");
+        System.out.println(LibraryImpl.INSTANCE.getBooks());
+        try{
+            LibraryImpl.INSTANCE.load("libreriafile.json");
+        }catch(Exception e){
+            System.out.println("Errore durante il caricamento: "+e.getMessage());
+        }
+        System.out.println("\nDopo il caricamento:\n ");
+        System.out.println(LibraryImpl.INSTANCE.getBooks());
+
+
     }
 }

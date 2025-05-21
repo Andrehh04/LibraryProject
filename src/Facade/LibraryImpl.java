@@ -113,22 +113,13 @@ public enum LibraryImpl implements Library {
     }
 
     //metodi modulo persistenza
-    @Override
     public void save(List<Book> list, String path) throws IOException {
-        try{
-            bookSave.save(list,path);
-        }catch (IOException e){
-            System.out.println("Errore durante il salvataggio: "+e.getMessage());
-        }
+        bookSave.save(list,path);
     }
 
-    @Override
-    public List<Book> load(String path) throws IOException {
-        try{
-            return bookSave.load(path);
-        }catch (IOException e){
-            System.out.println("Errore durante il caricamento del file: "+e.getMessage());
-            return Collections.emptyList();
+    public void load(String path) throws IOException {
+        for(Book book:bookSave.load(path)){
+            bookManagement.addBook(book);
         }
     }
 }

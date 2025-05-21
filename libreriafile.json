@@ -1,0 +1,43 @@
+[ {
+  "title" : "Libro1",
+  "author" : "Autore1",
+  "isbn" : "123",
+  "genre" : "Genre1",
+  "rating" : "CINQUE",
+  "readingStatus" : "TOREAD"
+}, {
+  "title" : "Libro2",
+  "author" : "Autore2",
+  "isbn" : "456",
+  "genre" : "Genre1",
+  "rating" : "CINQUE",
+  "readingStatus" : "READ"
+}, {
+  "title" : "Libro4",
+  "author" : "Autore4",
+  "isbn" : "987",
+  "genre" : "Genre4",
+  "rating" : "CINQUE",
+  "readingStatus" : "READ"
+}, {
+  "title" : "Libro5",
+  "author" : "Autore4",
+  "isbn" : "654",
+  "genre" : "Genre5",
+  "rating" : "CINQUE",
+  "readingStatus" : "TOREAD"
+}, {
+  "title" : "Libro6",
+  "author" : "Autore3",
+  "isbn" : "321",
+  "genre" : "Genre6",
+  "rating" : "CINQUE",
+  "readingStatus" : "READING"
+}, {
+  "title" : "Libro3",
+  "author" : "Autore2",
+  "isbn" : "789",
+  "genre" : "Genre3",
+  "rating" : "CINQUE",
+  "readingStatus" : "READING"
+} ]
