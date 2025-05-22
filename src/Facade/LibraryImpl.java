@@ -1,22 +1,16 @@
 package Facade;
 
 import Command.*;
-import Filtering.BookFilter;
-import Filtering.BookFilterImpl;
-import Filtering.FilterStrategy;
+import Filtering.*;
 import Management.BookManagement;
 import Management.BookManagementImpl;
 import Model.Book;
 import Model.Rating;
 import Model.ReadingStatus;
-import Ordering.BookOrder;
-import Ordering.BookOrderImpl;
-import Ordering.OrderStrategy;
+import Ordering.*;
 import Persistence.BookSave;
 import Persistence.BookSaveJSON;
-import Researching.BookResearch;
-import Researching.BookResearchImpl;
-import Researching.ResearchStrategy;
+import Researching.*;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -41,6 +35,7 @@ public enum LibraryImpl implements Library {
         bookSave = new BookSaveJSON();
     }
 
+
     //Metodi modulo filtraggio
     @Override
     public List<Book> filter(List<Book> list, String parameter) {
@@ -51,6 +46,15 @@ public enum LibraryImpl implements Library {
     public void setStrategy(FilterStrategy strategy){
         bookFilter.setStrategy(strategy);
     }
+
+    public FilterStrategy createFilterByGenreStrategy(){
+        return new FilterByGenre();
+    }
+
+    public FilterStrategy createFilterByStatusStrategy(){
+        return new FilterByStatus();
+    }
+
 
     //Metodi modulo gestione con command
     public CommandIF createAddCommand(Book book){
@@ -77,6 +81,7 @@ public enum LibraryImpl implements Library {
         return bookManagement.getBooks();
     }
 
+
     //metodi modulo ordinamento
     @Override
     public List<Book> Order(List<Book> list) {
@@ -88,6 +93,23 @@ public enum LibraryImpl implements Library {
         bookOrder.setStrategy(strategy);
     }
 
+    public OrderStrategy createOrderByTitleStrategy(){
+        return new OrderByTitle();
+    }
+
+    public OrderStrategy createOrderByAuthorStrategy(){
+        return new OrderByAuthor();
+    }
+
+    public OrderStrategy createOrderByGenreStrategy(){
+        return new OrderByGenre();
+    }
+
+    public OrderStrategy createOrderByStatusStrategy(){
+        return new OrderByStatus();
+    }
+
+
     //metodi modulo ricerca
     @Override
     public List<Book> searchBook(List<Book> list, String s) {
@@ -98,6 +120,19 @@ public enum LibraryImpl implements Library {
     public void setStrategy(ResearchStrategy strategy){
         bookResearch.setStrategy(strategy);
     }
+
+    public ResearchStrategy createSearchByAuthorStrategy(){
+        return new SearchByAuthor();
+    }
+
+    public ResearchStrategy createSearchByISBNStrategy(){
+        return new SearchByISBN();
+    }
+
+    public ResearchStrategy createSearchByTitleStrategy(){
+        return new SearchByTitle();
+    }
+
 
     //metodi command handler
     public void handle(CommandIF command){
@@ -111,6 +146,7 @@ public enum LibraryImpl implements Library {
     public void redo(){
         commandHandler.redo();
     }
+
 
     //metodi modulo persistenza
     public void save(List<Book> list, String path) throws IOException {

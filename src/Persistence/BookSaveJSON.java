@@ -23,7 +23,7 @@ public class BookSaveJSON implements BookSave{
             }
             mapper.writerWithDefaultPrettyPrinter().writeValue(new File(path),dtoList);
         }catch(IOException e){
-            System.out.println("Errore nel salvataggio: "+e.getMessage());
+            System.out.println("Saving error: "+e.getMessage());
         }
 
     }
@@ -39,7 +39,7 @@ public class BookSaveJSON implements BookSave{
             }
             return list;
         }catch (IOException e){
-            System.out.println("Errore nel caricamento: "+e.getMessage());
+            System.out.println("Loading error: "+e.getMessage());
             return Collections.emptyList();
         }
 

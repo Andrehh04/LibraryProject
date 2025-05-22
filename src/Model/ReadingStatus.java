@@ -1,7 +1,7 @@
 package Model;
 
 public enum ReadingStatus {
-    READ("letto"), TOREAD("da leggere"), READING("in lettura"), NONE("null");
+    READ("read"), TOREAD("to read"), READING("reading"), NONE("null");
 
     private final String description;
     private
