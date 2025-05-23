@@ -18,7 +18,7 @@ public class CommandHandler {
 
         //dopo che eseguiamo un comando bisogna svuotare la redolist perchè il "futuro" non ha più senso
         if(!redoList.isEmpty()){
-            redoList.removeFirst();
+            redoList.clear();
         }
     }
 
