@@ -3,6 +3,9 @@ package GraphicInterface;
 import Facade.Library;
 import Facade.LibraryImpl;
 import Filtering.FilterByGenre;
+import Model.Book;
+import Model.Rating;
+import Model.ReadingStatus;
 import Ordering.*;
 
 import javax.swing.*;
@@ -251,13 +254,106 @@ public class GUI {
 
         //action listener add button
         addButton.addActionListener(e -> {
-           JDialog dialog = new JDialog();
-           JTextField title = new JTextField(10);
-           JTextField author = new JTextField(10);
-           JTextField isbn = new JTextField(10);
-           JTextField genre = new JTextField(10);
-           //JTextField rating =
+            JDialog dialog = new JDialog();
+            dialog.setLayout(new BorderLayout());
+
+            JPanel inputPanel = new JPanel();
+            inputPanel.setLayout(new BoxLayout(inputPanel,BoxLayout.Y_AXIS));
+            JPanel labelPanel = new JPanel();
+            labelPanel.setLayout(new BoxLayout(labelPanel,BoxLayout.Y_AXIS));
+            JPanel confirmPanel = new JPanel();
+
+            JButton confirm = new JButton("Confirm");
+            JButton cancel = new JButton("Cancel");
+
+            JTextField title = new JTextField(10);
+            title.setMaximumSize(new Dimension(150,25));
+            JTextField author = new JTextField(10);
+            author.setMaximumSize(new Dimension(150,25));
+            JTextField isbn = new JTextField(10);
+            isbn.setMaximumSize(new Dimension(150,25));
+            JTextField genre = new JTextField(10);
+            genre.setMaximumSize(new Dimension(150,25));
+            JComboBox<ReadingStatus> statusCombo = new JComboBox<>(ReadingStatus.values());
+            statusCombo.setMaximumSize(new Dimension(150,25));
+            JComboBox<Rating> ratingCombo = new JComboBox<>(Rating.values());
+            ratingCombo.setMaximumSize(new Dimension(150,25));
+
+            labelPanel.add(Box.createVerticalStrut(32));
+            labelPanel.add(new JLabel("Title:"));
+            labelPanel.add(Box.createVerticalStrut(40));
+            labelPanel.add(new JLabel("Author:"));
+            labelPanel.add(Box.createVerticalStrut(36));
+            labelPanel.add(new JLabel("ISBN:"));
+            labelPanel.add(Box.createVerticalStrut(40));
+            labelPanel.add(new JLabel("Genre:"));
+            labelPanel.add(Box.createVerticalStrut(40));
+            labelPanel.add(new JLabel("Reading Status:"));
+            labelPanel.add(Box.createVerticalStrut(38));
+            labelPanel.add(new JLabel("Rating:"));
+
+            inputPanel.add(Box.createVerticalStrut(30));
+            inputPanel.add(title);
+            inputPanel.add(Box.createVerticalStrut(30));
+            inputPanel.add(author);
+            inputPanel.add(Box.createVerticalStrut(30));
+            inputPanel.add(isbn);
+            inputPanel.add(Box.createVerticalStrut(30));
+            inputPanel.add(genre);
+            inputPanel.add(Box.createVerticalStrut(30));
+            inputPanel.add(statusCombo);
+            inputPanel.add(Box.createVerticalStrut(30));
+            inputPanel.add(ratingCombo);
+            inputPanel.add(Box.createVerticalStrut(30));
+
+            confirmPanel.add(confirm);
+            confirmPanel.add(cancel);
+            dialog.add(labelPanel,BorderLayout.WEST);
+            dialog.add(inputPanel,BorderLayout.CENTER);
+            dialog.add(confirmPanel,BorderLayout.SOUTH);
+
+
+            dialog.setSize(300,450);
+            dialog.setResizable(false);
+            dialog.setLocationRelativeTo(frame);
+            dialog.setVisible(true);
+
+            //Action listener confirm button
+            confirm.addActionListener(event -> {
+                if(!(title.getText().trim().isEmpty() || author.getText().trim().isEmpty() || isbn.getText().trim().isEmpty())) {
+                    Book.Builder builder = new Book.Builder(title.getText(),author.getText(),isbn.getText());
+                    Book book = builder.setGenre(genre.getText()).
+                            setReadingStatus((ReadingStatus)statusCombo.getSelectedItem()).
+                            setRating((Rating)ratingCombo.getSelectedItem()).build();
+                    library.handle(library.createAddCommand(book));
+                    model.refresh();
+                    dialog.dispose();
+                }else{
+                    JOptionPane.showMessageDialog(frame, "Please fill all the required fields");
+                }
+            });
+
+            //Action listener cancel button
+            cancel.addActionListener(event ->{
+                dialog.dispose();
+            });
+        });//fine action listener add button
+
+
+        //Action listener undo button
+        undoButton.addActionListener(e ->{
+            library.undo();
+            model.refresh();
         });
+
+
+        //Action listener redo button
+        redoButton.addActionListener(e ->{
+            library.redo();
+            model.refresh();
+        });
+
+
 
         toolBar.setLayout(new FlowLayout());
         toolBar2.setLayout(new FlowLayout());
