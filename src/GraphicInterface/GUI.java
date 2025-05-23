@@ -67,11 +67,17 @@ public class GUI {
         addButton.setPreferredSize(new Dimension(150, 25));
         JButton removeButton = new JButton("Remove book");
         removeButton.setPreferredSize(new Dimension(150, 25));
-        JButton modifyButton = new JButton("Modify book");
-        modifyButton.setPreferredSize(new Dimension(150, 25));
+        JButton modifyGenreButton = new JButton("Modify genre");
+        modifyGenreButton.setPreferredSize(new Dimension(150, 25));
+        JButton modifyStatusButton = new JButton("Modify status");
+        modifyStatusButton.setPreferredSize(new Dimension(150, 25));
+        JButton modifyRatingButton = new JButton("Modify rating");
+        modifyRatingButton.setPreferredSize(new Dimension(150, 25));
         toolBar2.add(addButton);
         toolBar2.add(removeButton);
-        toolBar2.add(modifyButton);
+        toolBar2.add(modifyGenreButton);
+        toolBar2.add(modifyStatusButton);
+        toolBar2.add(modifyRatingButton);
 
 
         //listener per bottone show
@@ -254,7 +260,7 @@ public class GUI {
 
         //action listener add button
         addButton.addActionListener(e -> {
-            JDialog dialog = new JDialog();
+            JDialog dialog = new JDialog(frame,"Add book",true);
             dialog.setLayout(new BorderLayout());
 
             JPanel inputPanel = new JPanel();
@@ -313,11 +319,6 @@ public class GUI {
             dialog.add(confirmPanel,BorderLayout.SOUTH);
 
 
-            dialog.setSize(300,450);
-            dialog.setResizable(false);
-            dialog.setLocationRelativeTo(frame);
-            dialog.setVisible(true);
-
             //Action listener confirm button
             confirm.addActionListener(event -> {
                 if(!(title.getText().trim().isEmpty() || author.getText().trim().isEmpty() || isbn.getText().trim().isEmpty())) {
@@ -337,7 +338,99 @@ public class GUI {
             cancel.addActionListener(event ->{
                 dialog.dispose();
             });
+
+            dialog.setSize(300,450);
+            dialog.setResizable(false);
+            dialog.setLocationRelativeTo(frame);
+            dialog.setVisible(true);
         });//fine action listener add button
+
+
+        //Action listener modifyGenre button
+         modifyGenreButton.addActionListener(e -> {
+             if(table.getSelectedRow()!=-1){
+                 Book book = model.getBookAt(table.getSelectedRow());
+                 String input = JOptionPane.showInputDialog(frame, "Enter a genre");
+                 if (input != null) {
+                     library.handle(library.createModifyGenreCommand(book,input));
+                 }
+                 model.refresh();
+             }
+
+         });
+
+         //Action listener modifyStatus button
+        modifyStatusButton.addActionListener(e -> {
+            if(table.getSelectedRow()!=-1){
+                JDialog dialog = new JDialog(frame,"Modify status",true);
+                Book book = model.getBookAt(table.getSelectedRow());
+                dialog.setLayout(new BorderLayout());
+                JPanel inputPanel = new JPanel();
+                JPanel confirmPanel = new JPanel();
+                JButton confirm = new JButton("Confirm");
+                JButton cancel = new JButton("Cancel");
+                confirmPanel.add(confirm);
+                confirmPanel.add(cancel);
+                JComboBox<ReadingStatus> statusCombo = new JComboBox<>(ReadingStatus.values());
+                statusCombo.setMaximumSize(new Dimension(150,25));
+                statusCombo.setSelectedItem(book.getReadingStatus());
+                inputPanel.add(statusCombo);
+                dialog.add(inputPanel,BorderLayout.CENTER);
+                dialog.add(confirmPanel,BorderLayout.SOUTH);
+
+                confirm.addActionListener(event ->{
+                    library.handle(library.createModifyStatusCommand(book,(ReadingStatus)statusCombo.getSelectedItem()));
+                    model.refresh();
+                    dialog.dispose();
+                });
+
+                cancel.addActionListener(event ->{
+                    dialog.dispose();
+                });
+
+                dialog.setSize(300,250);
+                dialog.setResizable(false);
+                dialog.setLocationRelativeTo(frame);
+                dialog.setVisible(true);
+            }
+        });
+
+
+        //Action listener modifyRating button
+        modifyRatingButton.addActionListener(e -> {
+            if(table.getSelectedRow()!=-1){
+                JDialog dialog = new JDialog(frame,"Modify rating",true);
+                Book book = model.getBookAt(table.getSelectedRow());
+                dialog.setLayout(new BorderLayout());
+                JPanel inputPanel = new JPanel();
+                JPanel confirmPanel = new JPanel();
+                JButton confirm = new JButton("Confirm");
+                JButton cancel = new JButton("Cancel");
+                confirmPanel.add(confirm);
+                confirmPanel.add(cancel);
+                JComboBox<Rating> ratingCombo = new JComboBox<>(Rating.values());
+                ratingCombo.setMaximumSize(new Dimension(150,25));
+                ratingCombo.setSelectedItem(book.getRating());
+                inputPanel.add(ratingCombo);
+                dialog.add(inputPanel,BorderLayout.CENTER);
+                dialog.add(confirmPanel,BorderLayout.SOUTH);
+
+                confirm.addActionListener(event ->{
+                    library.handle(library.createModifyRatingCommand(book,(Rating)ratingCombo.getSelectedItem()));
+                    model.refresh();
+                    dialog.dispose();
+                });
+
+                cancel.addActionListener(event ->{
+                    dialog.dispose();
+                });
+
+                dialog.setSize(300,250);
+                dialog.setResizable(false);
+                dialog.setLocationRelativeTo(frame);
+                dialog.setVisible(true);
+            }
+        });
 
 
         //Action listener undo button

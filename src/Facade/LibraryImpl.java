@@ -65,7 +65,7 @@ public enum LibraryImpl implements Library {
         return new RemoveCommand(book,bookManagement);
     }
 
-    public CommandIF createModyfyGenreCommand(Book book, String genre){
+    public CommandIF createModifyGenreCommand(Book book, String genre){
         return new ModifyGenreCommand(bookManagement,book,genre);
     }
 

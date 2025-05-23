@@ -48,6 +48,10 @@ public class LibraryModel extends AbstractTableModel {
         refresh();
     }
 
+    public Book getBookAt(int row) {
+        return books.get(row);
+    }
+
     public void refresh() {
         fireTableDataChanged();
     }
