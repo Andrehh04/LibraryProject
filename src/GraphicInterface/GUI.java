@@ -57,6 +57,36 @@ public class GUI {
         toolBar.addSeparator(new Dimension(40,0));
         toolBar.add(showButton);
 
+
+        //Seconda toolbar con i bottoni per aggiungere rimuovere e modificare un libro
+        JToolBar toolBar2 = new JToolBar();
+        JButton addButton = new JButton("Add book");
+        addButton.setPreferredSize(new Dimension(150, 25));
+        JButton removeButton = new JButton("Remove book");
+        removeButton.setPreferredSize(new Dimension(150, 25));
+        JButton modifyButton = new JButton("Modify book");
+        modifyButton.setPreferredSize(new Dimension(150, 25));
+        toolBar2.add(addButton);
+        toolBar2.add(removeButton);
+        toolBar2.add(modifyButton);
+
+
+        //listener per bottone show
+        showButton.addActionListener(e -> {
+           model.setBooks(library.getBooks());
+        });
+
+
+        //listener per il bottone save
+        saveButton.addActionListener(e -> {
+            try{
+                library.save(library.getBooks(),"libreriafile.json");
+            }catch(IOException exception){
+                System.out.println("Saving error: " + exception.getMessage());
+            }
+        });
+
+
         //menù a tendina per il search button
         JPopupMenu popSearchMenu = new JPopupMenu();
         JMenuItem itSearch1 = new JMenuItem("Search by title");
@@ -70,7 +100,27 @@ public class GUI {
             popSearchMenu.show(researchButton, 0, researchButton.getHeight());
         });
         //listener item popup menu
-
+        itSearch1.addActionListener(e -> {
+            String input = JOptionPane.showInputDialog(frame, "Enter a title");
+            if (input != null) {
+                library.setStrategy(library.createSearchByTitleStrategy());
+                model.setBooks(library.searchBook(library.getBooks(), input));
+            }
+        });
+        itSearch2.addActionListener(e -> {
+            String input = JOptionPane.showInputDialog(frame, "Enter an author");
+            if (input != null) {
+                library.setStrategy(library.createSearchByAuthorStrategy());
+                model.setBooks(library.searchBook(library.getBooks(), input));
+            }
+        });
+        itSearch3.addActionListener(e -> {
+            String input = JOptionPane.showInputDialog(frame, "Enter an ISBN");
+            if (input != null) {
+                library.setStrategy(library.createSearchByISBNStrategy());
+                model.setBooks(library.searchBook(library.getBooks(), input));
+            }
+        });
 
 
 
@@ -96,7 +146,7 @@ public class GUI {
             }
         });
         itFilter2.addActionListener(e -> {
-            JDialog dialog = new JDialog(frame,"Select reding status",true);
+            JDialog dialog = new JDialog(frame,"Select reading status",true);
             dialog.setLayout(new GridLayout(3,1));
             dialog.setSize(150,200);
             dialog.setLocationRelativeTo(frame);
@@ -126,8 +176,6 @@ public class GUI {
 
 
 
-
-
         //menù a tendina per l'order button
         JPopupMenu popOrderMenu = new JPopupMenu();
         JMenuItem itOrder1 = new JMenuItem("Order by title");
@@ -150,7 +198,7 @@ public class GUI {
             model.setBooks(library.Order(library.getBooks()));
         });
         itOrder2.addActionListener(e -> {
-            library.setStrategy(library.createSearchByAuthorStrategy());
+            library.setStrategy(library.createOrderByAuthorStrategy());
             model.setBooks(library.Order(library.getBooks()));
         });
         itOrder3.addActionListener(e -> {
@@ -164,14 +212,61 @@ public class GUI {
 
 
 
-        //tabella contenente i libri da visualizare
-        JTable table = new JTable(model);
-        JScrollPane scrollPane = new JScrollPane(table);
-        frame.add(scrollPane, BorderLayout.CENTER);
 
+        //tabella contenente i libri da visualizzare
+        JTable table = new JTable(model);
+        table.setRowHeight(50);
+        JScrollPane scrollPane = new JScrollPane(table);
+        JPanel panel = new JPanel();
+        panel.add(scrollPane);
+        scrollPane.setPreferredSize(new Dimension(800,300));
+        panel.setBorder(BorderFactory.createEmptyBorder(100, 10, 10, 50));
+        frame.add(panel);
+
+
+        //action listener remove button
+        removeButton.addActionListener(e -> {
+            int row = table.getSelectedRow();
+            if (row != -1) {
+                JDialog dialog = new JDialog(frame, "Are you sure you want to delete?", true);
+                JButton yes = new JButton("Yes");
+                JButton no = new JButton("No");
+                dialog.setLayout(new GridLayout(1,2));
+                dialog.setSize(200,80);
+                dialog.setLocationRelativeTo(frame);
+                dialog.add(yes);
+                dialog.add(no);
+                yes.addActionListener(event ->{
+                    library.handle(library.createRemoveCommand(model.getBookAt(row)));
+                    model.refresh();
+                    dialog.dispose();
+                });
+                no.addActionListener(event ->{
+                   dialog.dispose();
+                });
+                dialog.setVisible(true);
+            }
+        });
+
+
+        //action listener add button
+        addButton.addActionListener(e -> {
+           JDialog dialog = new JDialog();
+           JTextField title = new JTextField(10);
+           JTextField author = new JTextField(10);
+           JTextField isbn = new JTextField(10);
+           JTextField genre = new JTextField(10);
+           //JTextField rating =
+        });
 
         toolBar.setLayout(new FlowLayout());
-        frame.add(toolBar, BorderLayout.NORTH);
+        toolBar2.setLayout(new FlowLayout());
+        JPanel toolbarPanel = new JPanel();
+        toolbarPanel.setLayout(new BoxLayout(toolbarPanel, BoxLayout.Y_AXIS));
+        toolbarPanel.add(toolBar);
+        toolbarPanel.add(toolBar2);
+        frame.add(toolbarPanel, BorderLayout.NORTH);
+
         frame.setPreferredSize(new Dimension(1000, 800));
         frame.pack();
         frame.setVisible(true);
