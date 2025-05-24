@@ -17,9 +17,6 @@ public class BookManagementImpl implements BookManagement {
 
     @Override
     public Book remove(Book book) {
-        if (!books.contains(book)){
-            throw new IllegalArgumentException();
-        }
         books.remove(book);
         return book;
     }

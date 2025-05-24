@@ -1,12 +1,9 @@
 package GraphicInterface;
 
-import Facade.Library;
 import Facade.LibraryImpl;
-import Filtering.FilterByGenre;
 import Model.Book;
 import Model.Rating;
 import Model.ReadingStatus;
-import Ordering.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -151,7 +148,6 @@ public class GUI {
             if (input != null) {
                 library.setStrategy(library.createFilterByGenreStrategy());
                 model.setBooks(library.filter(library.getBooks(),input));
-
             }
         });
         itFilter2.addActionListener(e -> {
@@ -247,6 +243,7 @@ public class GUI {
                 dialog.add(no);
                 yes.addActionListener(event ->{
                     library.handle(library.createRemoveCommand(model.getBookAt(row)));
+                    model.setBooks(LibraryImpl.INSTANCE.getBooks());
                     model.refresh();
                     dialog.dispose();
                 });
@@ -327,6 +324,7 @@ public class GUI {
                             setReadingStatus((ReadingStatus)statusCombo.getSelectedItem()).
                             setRating((Rating)ratingCombo.getSelectedItem()).build();
                     library.handle(library.createAddCommand(book));
+                    model.setBooks(LibraryImpl.INSTANCE.getBooks());
                     model.refresh();
                     dialog.dispose();
                 }else{
