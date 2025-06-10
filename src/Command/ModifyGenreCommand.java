@@ -18,8 +18,11 @@ public class ModifyGenreCommand implements CommandIF{
 
     @Override
     public boolean doIt() {
-        bm.modifyGenre(book, newGenre);
-        return true;
+        if(bm.getBooks().contains(book)) {
+            bm.modifyGenre(book, newGenre);
+            return true;
+        }
+        return false;
     }
 
     @Override

@@ -21,7 +21,10 @@ public class ModifyStatusCommand implements CommandIF{
 
     @Override
     public boolean undoIt() {
-        bm.modifyStatus(book, oldStatus);
-        return true;
+        if(bm.getBooks().contains(book)) {
+            bm.modifyStatus(book, oldStatus);
+            return true;
+        }
+        return false;
     }
 }

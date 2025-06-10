@@ -1,0 +1,22 @@
+[ {
+  "title" : "La coscienza di Zeno",
+  "author" : "Italo Svevo",
+  "isbn" : "9788822776358",
+  "genre" : "Romanzo",
+  "rating" : "CINQUE",
+  "readingStatus" : "READ"
+}, {
+  "title" : "Il piccolo principe",
+  "author" : "Antoine de Saint-Exupéry",
+  "isbn" : "9780544109100",
+  "genre" : "Novella",
+  "rating" : "NONE",
+  "readingStatus" : "TOREAD"
+}, {
+  "title" : "Il visconte dimezzato",
+  "author" : "Italo Calvino",
+  "isbn" : "9788478441716",
+  "genre" : "Narrativa",
+  "rating" : "CINQUE",
+  "readingStatus" : "READING"
+} ]

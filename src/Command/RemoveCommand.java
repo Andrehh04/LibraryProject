@@ -12,8 +12,11 @@ public class RemoveCommand implements CommandIF {
     }
     @Override
     public boolean doIt() {
-        bm.remove(book);
-        return true;
+        if(bm.getBooks().contains(book)) {
+            bm.remove(book);
+            return true;
+        }
+        return false;
     }
 
     @Override

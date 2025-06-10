@@ -1,22 +1,29 @@
 [ {
-  "title" : "sa",
-  "author" : "ss",
-  "isbn" : "fd",
-  "genre" : "fds",
-  "rating" : "CINQUE",
-  "readingStatus" : "TOREAD"
+  "title" : "a",
+  "author" : "a",
+  "isbn" : "a",
+  "genre" : "a",
+  "rating" : "UNO",
+  "readingStatus" : "READ"
+}, {
+  "title" : "b",
+  "author" : "b",
+  "isbn" : "b",
+  "genre" : "b",
+  "rating" : "TRE",
+  "readingStatus" : "READING"
 }, {
   "title" : "n",
   "author" : "n",
   "isbn" : "n",
   "genre" : "n",
-  "rating" : "NONE",
-  "readingStatus" : "NONE"
-}, {
-  "title" : "a",
-  "author" : "a",
-  "isbn" : "a",
-  "genre" : "gigigi",
-  "rating" : "QUATTRO",
+  "rating" : "UNO",
   "readingStatus" : "READ"
+}, {
+  "title" : "ab",
+  "author" : "ab",
+  "isbn" : "ab",
+  "genre" : "ab",
+  "rating" : "CINQUE",
+  "readingStatus" : "NONE"
 } ]

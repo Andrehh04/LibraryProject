@@ -15,8 +15,11 @@ public class ModifyRatingCommand implements CommandIF{
     }
     @Override
     public boolean doIt() {
-        bm.modifyRating(book, newRating);
-        return true;
+        if(bm.getBooks().contains(book)) {
+            bm.modifyRating(book, newRating);
+            return true;
+        }
+        return false;
     }
 
     @Override
