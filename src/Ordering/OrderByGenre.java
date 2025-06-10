@@ -11,6 +11,9 @@ public class OrderByGenre implements OrderStrategy{
 
     @Override
     public List<Book> OrderBy(List<Book> list) {
+        if (list == null)
+            return Collections.emptyList();
+
         ArrayList<Book> books = new ArrayList<Book>(list);
         books.sort(new GenreComparator());
         return books;

@@ -3,6 +3,7 @@ package Ordering;
 import Model.Book;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -10,6 +11,9 @@ public class OrderByStatus implements OrderStrategy{
 
     @Override
     public List<Book> OrderBy(List<Book> list) {
+        if (list == null)
+            return Collections.emptyList();
+
         ArrayList<Book> books = new ArrayList<Book>(list);
         books.sort(new StateComparator());
         return books;

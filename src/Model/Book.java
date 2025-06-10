@@ -43,9 +43,18 @@ public class Book {
 
     //il costruttore della classe Book è privato perchè lo si può chiamare solamente col metodo build() di Builder
     private Book(Builder builder){
-        this.title=builder.title;
-        this.author=builder.author;
-        this.isbn=builder.isbn;
+        if(builder.title == null)
+            this.title="Unknown title";
+        else
+            this.title=builder.title;
+        if(builder.author == null)
+            this.author="Unknown author";
+        else
+            this.author=builder.author;
+        if(builder.isbn == null)
+            this.isbn="Unknown isbn";
+        else
+            this.isbn=builder.isbn;
         this.genre=builder.genre;
         this.rating=builder.rating;
         this.readingStatus=builder.readingStatus;

@@ -11,6 +11,12 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Integration test suite for the LibraryImpl.
+ * Covers book management (add, remove, modify, undo/redo operations),
+ * search, filter, and order functionalities.
+ */
+
 //utilizzo la seguente annotazione per far si che tutti i test condividano la stessa istanza
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class LibraryFacadeTest {
