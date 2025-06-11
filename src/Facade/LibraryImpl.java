@@ -17,7 +17,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-public enum LibraryImpl implements Library {
+public enum LibraryImpl {
     INSTANCE;
     final BookManagement bookManagement;
     final BookOrder bookOrder;
@@ -37,12 +37,11 @@ public enum LibraryImpl implements Library {
 
 
     //Metodi modulo filtraggio
-    @Override
     public List<Book> filter(List<Book> list, String parameter) {
         return bookFilter.filter(list, parameter);
     }
 
-    @Override
+
     public void setStrategy(FilterStrategy strategy){
         bookFilter.setStrategy(strategy);
     }
@@ -83,12 +82,10 @@ public enum LibraryImpl implements Library {
 
 
     //metodi modulo ordinamento
-    @Override
     public List<Book> Order(List<Book> list) {
         return bookOrder.Order(list);
     }
 
-    @Override
     public void setStrategy(OrderStrategy strategy){
         bookOrder.setStrategy(strategy);
     }
@@ -111,12 +108,10 @@ public enum LibraryImpl implements Library {
 
 
     //metodi modulo ricerca
-    @Override
     public List<Book> searchBook(List<Book> list, String s) {
         return bookResearch.searchBook(list, s);
     }
 
-    @Override
     public void setStrategy(ResearchStrategy strategy){
         bookResearch.setStrategy(strategy);
     }

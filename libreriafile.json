@@ -1,29 +1,29 @@
 [ {
-  "title" : "a",
-  "author" : "a",
-  "isbn" : "a",
-  "genre" : "a",
-  "rating" : "UNO",
-  "readingStatus" : "READ"
-}, {
-  "title" : "b",
-  "author" : "b",
-  "isbn" : "b",
-  "genre" : "b",
-  "rating" : "TRE",
-  "readingStatus" : "READING"
-}, {
-  "title" : "n",
-  "author" : "n",
-  "isbn" : "n",
-  "genre" : "n",
-  "rating" : "UNO",
-  "readingStatus" : "READ"
-}, {
-  "title" : "ab",
-  "author" : "ab",
-  "isbn" : "ab",
-  "genre" : "ab",
+  "title" : "La divina commedia",
+  "author" : "Dante Alighieri",
+  "isbn" : "987656789",
+  "genre" : "Narrativa",
   "rating" : "CINQUE",
-  "readingStatus" : "NONE"
+  "readingStatus" : "READ"
+}, {
+  "title" : "I promessi sposi",
+  "author" : "Alessandro Manzoni",
+  "isbn" : "564378920",
+  "genre" : "Romanzo",
+  "rating" : "TRE",
+  "readingStatus" : "READ"
+}, {
+  "title" : "Uno, nessuno e centomila",
+  "author" : "Luigi Pirandello",
+  "isbn" : "936502002",
+  "genre" : "Novella",
+  "rating" : "NONE",
+  "readingStatus" : "TOREAD"
+}, {
+  "title" : "Il visconte dimezzato",
+  "author" : "Italo Calvino",
+  "isbn" : "102938753",
+  "genre" : "",
+  "rating" : "QUATTRO",
+  "readingStatus" : "READING"
 } ]
