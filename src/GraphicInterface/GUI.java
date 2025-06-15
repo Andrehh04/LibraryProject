@@ -87,6 +87,7 @@ public class GUI {
         saveButton.addActionListener(e -> {
             try{
                 library.save(library.getBooks(),"libreriafile.json");
+                JOptionPane.showMessageDialog(frame, "Save completed successfully");
             }catch(IOException exception){
                 System.out.println("Saving error: " + exception.getMessage());
             }
@@ -237,7 +238,7 @@ public class GUI {
                 JButton yes = new JButton("Yes");
                 JButton no = new JButton("No");
                 dialog.setLayout(new GridLayout(1,2));
-                dialog.setSize(200,80);
+                dialog.setSize(250,80);
                 dialog.setLocationRelativeTo(frame);
                 dialog.add(yes);
                 dialog.add(no);

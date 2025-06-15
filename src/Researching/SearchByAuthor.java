@@ -14,9 +14,11 @@ public class SearchByAuthor implements ResearchStrategy{
             return Collections.emptyList();
         LinkedList<Book> books = new LinkedList<>();
         for(Book book: list)
-            if(book.getAuthor().replaceAll("\\s+", "").equalsIgnoreCase(s.replaceAll("\\s+", "")))
+            if(book.getAuthor().replaceAll("\\s+", "").
+                    equalsIgnoreCase(s.replaceAll("\\s+", "")))
                 books.add(book);
 
         return books;
     }
 }
+

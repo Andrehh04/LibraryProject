@@ -26,4 +26,11 @@
   "genre" : "",
   "rating" : "QUATTRO",
   "readingStatus" : "READING"
+}, {
+  "title" : "1984",
+  "author" : "George Orwell",
+  "isbn" : "9780436350221",
+  "genre" : "Narrativa Distopica",
+  "rating" : "CINQUE",
+  "readingStatus" : "READING"
 } ]

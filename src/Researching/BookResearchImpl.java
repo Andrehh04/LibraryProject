@@ -2,7 +2,6 @@ package Researching;
 
 import Model.Book;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class BookResearchImpl implements BookResearch {
