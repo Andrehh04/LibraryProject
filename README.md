@@ -23,6 +23,7 @@ Altre funzionalità interessanti fornite dall'applicazione sono:
 
 ## Come eseguire il programma
 Per eseguire il programma, dopo aver clonato il repository e averlo aperto su un IDE, occorre eseguire la classe "GUI" presente nel package "GraphicUserInterface".
+Vi è anche la possibilità di eseguirlo attraverso il jar presente in **ProgettoLibreriaPersonale\build**
 
 ## Autore
 **Andrea Mazza**, studente presso **Università della Calabria**.
